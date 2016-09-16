@@ -9,7 +9,7 @@ USER root
 
 #setting up nodejs enviroment
 RUN apt-get update
-RUN apt-get install build-essential libssl-dev
+RUN apt-get -y install build-essential libssl-dev
 RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.16.1/install.sh | sh
 RUN source ~/.profile
 RUN nvm ls-remote
