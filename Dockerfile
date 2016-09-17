@@ -17,4 +17,4 @@ RUN apt-get install -y mongodb
 
 
 
-ENTRYPOINT mongod -f metinvest_site/mongo/mongod.conf & node metinvest_site/web.js
+ENTRYPOINT mongod -f metinvest_site/mongo/conf/mongod.conf & node metinvest_site/web.js
