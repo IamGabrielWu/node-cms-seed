@@ -8,4 +8,4 @@ how to install and run:
 
 then the site can be visited at http://localhost:3000;
 
-for the admin portal, it's at http://localhost:3000/keystone with username = admin@keystone.com password= admin
+for the admin portal, it's at http://localhost:3000/keystone with username = admin@keystonejs.com password= admin
