@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
+    "cloudinary": "^1.4.3",
     "jade": "^1.11.0",
     "keystone": "latest",
     "underscore": "latest"

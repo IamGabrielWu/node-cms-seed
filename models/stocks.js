@@ -1,6 +1,6 @@
 var keystone = require('keystone'),
     Types = keystone.Field.Types;
- 
+
 var Stock = new keystone.List('Stock',{
 	autokey: { path: 'stock_name_path', from: 'stock_name', unique: true },
     map: { name: 'stock_name' },
@@ -8,9 +8,10 @@ var Stock = new keystone.List('Stock',{
 });
 //TODO confirm with Leo below property require or not
 Stock.add({
-	stock_name:{type:Types.Text,index: true },
-	stock_path:{type:Types.Text,index: true},
-	price:{type:Types.Number},
+	stock_name:{type:Types.Text,require:true, index: true },
+	stock_path:{type:Types.Text,require:true, index: true},
+	stock_image: { type: Types.CloudinaryImage },
+	price:{type:Types.Number,require:true},
 	car_parking:{type:Types.Number},
 	bedrooms:{type:Types.Number},
 	bathrooms:{type:Types.Number},
@@ -27,4 +28,5 @@ Stock.add({
 	property_type:{type:Types.Text},
 	contract_type:{type:Types.Text},
 })
+console.log("starting to register stock model...")
 Stock.register();

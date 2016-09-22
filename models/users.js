@@ -9,5 +9,5 @@ User.add({
     password: { type: Types.Password, initial: true },
     canAccessKeystone: { type: Boolean, initial: true }
 });
- 
+console.log("starting to register user model...")
 User.register();

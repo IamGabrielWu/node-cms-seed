@@ -8,8 +8,9 @@ var Project = new keystone.List('Project',{
 });
  
 Project.add({
-    project_name: { type: Types.Text, index: true },
-    project_path: { type: Types.Text, index: true },
+    project_name: { type: Types.Text,require:true, index: true },
+    project_path: { type: Types.Text,require:true,index: true },
+    project_image: {type:Types.CloudinaryImage,require:true},
     area: {type: Types.Text},
     state: { type: Types.Text},
     stock_list:{
