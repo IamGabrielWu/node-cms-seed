@@ -11,8 +11,8 @@ keystone.init({
   'view engine': 'jade',
   
   'auto update': true,
-  //'mongo': 'mongodb://met_mongo:met_mongo@ds033106.mlab.com:33106/heroku_5xqz1jwb',
-   'mongo': 'mongodb://localhost/metinvest_site',
+  'mongo': 'mongodb://met_mongo:met_mongo@ds033106.mlab.com:33106/heroku_5xqz1jwb',
+   // 'mongo': 'mongodb://localhost/metinvest_site',
   'session': true,
   'auth': true,
   'user model': 'User',
