@@ -1,7 +1,7 @@
 var keystone = require('keystone');
 keystone.init({
   
-  'name': 'mysite',
+  'name': 'metinvest admin',
   'brand':'metinvest_site',
   // 'favicon': 'public/favicon.ico',
   'less': 'public',
@@ -27,8 +27,9 @@ keystone.set('signin logo', ['../images/logo.png', 200, 200]);
 require('./models');
 
 keystone.set('nav', {
-    'users': 'users',
-    'business': ['projects', 'stocks']
+    'users': 'User',
+    'business': ['Project', 'Stock'],
+    'analysis':'Analysis'
 });
  
 keystone.set('routes', require('./routes'));
