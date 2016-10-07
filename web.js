@@ -1,8 +1,8 @@
 var keystone = require('keystone');
 keystone.init({
   
-  'name': 'mysite',
-  'brand':'metinvest_site',
+  'name': 'red23 admin',
+  'brand':'red23',
   // 'favicon': 'public/favicon.ico',
   'less': 'public',
   'static': ['public'],
@@ -12,7 +12,7 @@ keystone.init({
   
   'auto update': true,
   // 'mongo': 'mongodb://met_mongo:met_mongo@ds033106.mlab.com:33106/heroku_5xqz1jwb',
-  'mongo': 'mongodb://localhost/metinvest_site',
+  'mongo': 'mongodb://localhost/red23_site',
   'session': true,
   'auth': true,
   'user model': 'User',
@@ -27,8 +27,9 @@ keystone.set('signin logo', ['../images/logo.png', 200, 200]);
 require('./models');
 
 keystone.set('nav', {
-    'users': 'users',
-    'business': ['projects', 'stocks']
+    'users': 'User',
+    'business': ['Project', 'Stock'],
+    'analysis':'Analysis'
 });
  
 keystone.set('routes', require('./routes'));
