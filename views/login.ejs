@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+  <meta charset="UTF-8">
+  <title>Node CMS Seed</title>
+  <link rel="stylesheet" type="text/css" href="/css/login.css">
+  <script src="http://cdn.bootcss.com/jquery/3.1.1/core.js"></script>
+  <script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.js"></script>
+</head>
+<body>
+  <div class="login-page">
+ <% if (message) { %>
+  <h4 style="color: red"><%=message.error%></h4>
+  <% } %>
+  <div class="form">
+    <form class="login-form" id="loginForm" method="post">
+      <input type="text" name="username" placeholder="username"/>
+      <input type="password" name="password" placeholder="password"/>
+      <button>login</button>
+    </form>
+  </div>
+</div>
+<script type="text/javascript">
+const adminUrl = 'cms' //TODO will need to set it here to change views and url within views
+$('#loginForm').submit(function () {
+  //TODO validate
+  var user={
+    username:$("input[name='username']").text,
+    password:$("input[name='password']").text
+  }
+  $.post('/'+adminUrl+'/login',user,function(){
+    console.log(JSON.stringify(user)+' logining.....')
+  }).done(function() {
+    console.log( "login success" );
+    $.get('/'+adminUrl+'/login')
+  })
+  .fail(function() {
+    console.log( "login error" );
+  })
+  
+})
+</script>
+</body>
+</html>
+
