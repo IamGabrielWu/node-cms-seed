@@ -2,6 +2,7 @@
   "name": "node-cms-seed",
   "version": "0.0.1",
   "private": true,
+    "start":"node app.js",
   "dependencies": {
     "angular": "~1.5.0",
     "angular-bootstrap": "^0.12.2",
