@@ -1,5 +1,5 @@
 exports.backend_authorize = function (req, res, next) {
-    if (!req.session.username&& req.path !='/login') {
+    if (!req.session.username&& req.session.role=='admin' && req.path !='/login') {
         res.redirect('/cms/login');
     } else {
         next();

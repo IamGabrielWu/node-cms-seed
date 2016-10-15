@@ -12,7 +12,10 @@ var UserSchema=new Schema({
 		type:Date,
 		default:Date.now
 	},
-	updateDate:Date
+	updateDate:{
+		type:Date,
+		default:Date.now
+	}
 })
 //note: keep in mind what the model name set here, for instance, here we set schema name 'post', it reflects in database as posts, table name will automatically add 's' behind the model name
 module.exports=mongoose.model('user',UserSchema)

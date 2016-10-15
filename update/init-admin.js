@@ -1,16 +1,16 @@
-require('../models/User');
 var mongoose = require('mongoose');
 var User = mongoose.model('user');
 
-mongoose.connect('mongodb://red23site:red23site@ds049198.mlab.com:49198/heroku_3q50q5cr')
 var adminUser = new User({
     name: 'node-cms',
     username: 'node-cms',
     password: 'admin',
     role: 'admin',
     email: 'admin@node-cms.com',
-    createDate: Date.now
+    createDate: Date.now,
+    updateDate: Date.now
 })
+console.log("initing admin user => " + JSON.stringify(adminUser))
 User.update({
         username: adminUser.username
     }, {
@@ -20,7 +20,7 @@ User.update({
     },
     function (err, numAfected) {
         if (err) {
-            console.log(err)
+            console.error(err.stack)
         } else {
             console.log('number of records Affected: ' + JSON.stringify(numAfected))
         }

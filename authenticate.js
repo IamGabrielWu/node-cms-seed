@@ -27,6 +27,7 @@
                 if (user.username == username && user.password == password) {
                     console.log(username + ' login success')
                     req.session.username = user.username;
+                    req.session.role=user.role;
                     req.session.user = user;
                     return done(null, username);
                 } else {

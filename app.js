@@ -19,9 +19,23 @@ var express = require('express'),
     path = require('path'),
     backend_main = require('./routes/backend/main'),
     backend_login = require('./routes/backend/login'),
-    frontend_main=require('./routes/frontend/main'),
+    frontend_main = require('./routes/frontend/main'),
     frontend_login = require('./routes/frontend/login');
+var user_routes = require('./routes/api/user');
 
+
+//***database
+    //***models
+require('./models/User');
+    //***end models
+var mongoose = require('mongoose');
+var User = mongoose.model('user');
+mongoose.connect('mongodb://red23site:red23site@ds049198.mlab.com:49198/heroku_3q50q5cr')
+//***end database
+
+//***init data
+var initData=require('./update');
+//***end init data
 
 //***configuration
 var app = express();
@@ -44,6 +58,7 @@ app.use(express_session({
 app.use(flash());
 var env = process.env.NODE_ENV || 'development';
 
+
 if (env === 'development') {
     app.use(errorHandler());
 }
@@ -51,12 +66,8 @@ if (env === 'development') {
 if (env === 'production') {
     // TODO
 }
-//***end configuration
 
-//***adding models
-require('./models/User');
-require('./update')
-    //***end adding models
+//***end configuration
 
 //***authenticate
 require('./authenticate')
@@ -65,9 +76,11 @@ require('./authenticate')
 //***filter
 var filter = require('./filter')
     //***end filter
-    /**
-     * Routes
-     */
+
+//***api routing
+app.use(user_routes)
+//***end api routing
+
 //*** front pages routing
 app.use('/', filter.frontend_authorize);
 app.get('/login', frontend_login.index);
@@ -78,14 +91,14 @@ app.post('/login',
         failureFlash: true
     })
 );
-app.get('/',frontend_main.index)
-//*** end front pages routing
+app.get('/', frontend_main.index)
+    //*** end front pages routing
 
 
 //***backend pages routing
 const adminUrl = 'cms' //TODO will need to set it here to change views and url within views
     // serve index and view partials
-//***filter
+    //***filter
 app.use('/' + adminUrl, filter.backend_authorize);
 //***end filter
 app.get('/' + adminUrl + '/login', backend_login.index);
@@ -104,14 +117,16 @@ app.use(function (req, res, next) {
     res.render('404');
 })
 app.use(function (err, req, res, next) {
-    console.error(err.stack);
-    res.status(500);
-    res.render('500',{message:err.stack});
-})
-//***end backend pages routing
-/**
- * Start Server
- */
+        console.error(err.stack);
+        res.status(500);
+        res.render('500', {
+            message: err.stack
+        });
+    })
+    //***end backend pages routing
+    /**
+     * Start Server
+     */
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
