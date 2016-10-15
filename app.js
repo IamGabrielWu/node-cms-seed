@@ -15,12 +15,12 @@ var express = require('express'),
     //mongoose to mongo database
 
     morgan = require('morgan'),
-    main = require('./routes/main'),
-    api = require('./routes/api'),
-    login = require('./routes/login'),
     http = require('http'),
     path = require('path'),
-    frontmain=require('./routes/front-main');
+    backend_main = require('./routes/backend/main'),
+    backend_login = require('./routes/backend/login'),
+    frontend_main=require('./routes/frontend/main'),
+    frontend_login = require('./routes/frontend/login');
 
 
 //***configuration
@@ -69,15 +69,26 @@ var filter = require('./filter')
      * Routes
      */
 //*** front pages routing
-app.get('/',frontmain.index)
+app.use('/', filter.frontend_authorize);
+app.get('/login', frontend_login.index);
+app.post('/login',
+    passport.authenticate('local', {
+        successRedirect: '/',
+        failureRedirect: '/login',
+        failureFlash: true
+    })
+);
+app.get('/',frontend_main.index)
 //*** end front pages routing
 
+
+//***backend pages routing
 const adminUrl = 'cms' //TODO will need to set it here to change views and url within views
     // serve index and view partials
 //***filter
-app.use('/' + adminUrl, filter.authorize);
+app.use('/' + adminUrl, filter.backend_authorize);
 //***end filter
-app.get('/' + adminUrl + '/login', login.index);
+app.get('/' + adminUrl + '/login', backend_login.index);
 app.post('/' + adminUrl + '/login',
     passport.authenticate('local', {
         successRedirect: '/' + adminUrl,
@@ -85,7 +96,7 @@ app.post('/' + adminUrl + '/login',
         failureFlash: true
     })
 );
-app.get('/' + adminUrl, main.index);
+app.get('/' + adminUrl, backend_main.index);
 // redirect all others to the index (HTML5 history)
 // app.get('*', login.redirect);
 app.use(function (req, res, next) {
@@ -97,10 +108,7 @@ app.use(function (err, req, res, next) {
     res.status(500);
     res.render('500');
 })
-
-/**
- * End Routes
- */
+//***end backend pages routing
 /**
  * Start Server
  */

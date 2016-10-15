@@ -4,12 +4,12 @@
 
 exports.index = function(req, res) {
     console.log('main index')
-    res.render('index');
+    res.render('backend/index');
 };
 
 exports.partials = function(req, res) {
     var name = req.params.name;
-    res.render('main/' + name);
+    res.render('backend/main' + name);
 };
 
 /*
@@ -17,5 +17,5 @@ exports.partials = function(req, res) {
  */
 
 exports.login = function(req, res) {
-    res.render('login');
+    res.render('backend/login');
 };
