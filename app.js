@@ -106,7 +106,7 @@ app.use(function (req, res, next) {
 app.use(function (err, req, res, next) {
     console.error(err.stack);
     res.status(500);
-    res.render('500');
+    res.render('500',{message:err.stack});
 })
 //***end backend pages routing
 /**

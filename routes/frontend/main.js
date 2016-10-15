@@ -3,10 +3,10 @@
  */
 
 exports.index = function(req, res) {
-    res.render('frontend/main');
+    res.render('frontend/index');
 };
 
 exports.partials = function(req, res) {
     var name = req.params.name;
-    res.render('main/' + name);
+    res.render('frontend/index/' + name);
 };
