@@ -30,6 +30,7 @@ require('./models/User');
     //***end models
 var mongoose = require('mongoose');
 var User = mongoose.model('user');
+mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://red23site:red23site@ds049198.mlab.com:49198/heroku_3q50q5cr')
 //***end database
 

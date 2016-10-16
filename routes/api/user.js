@@ -1,42 +1,68 @@
 var express = require('express');
 var router = express.Router();
 var userApi = require('../../api/userApi')
+var mongoose = require('mongoose');
+var User = mongoose.model('user');
 
 
+var sendData = function (data) {
+    res.json(data)
+}
+var sendError = function (error) {
+    res.send(500, error.stack)
+}
 router.route('/api/user/:id').get(function (req, res, next) {
     var userId = req.params.id;
-    var user = userApi.readById(userId, res)
-    res.json(user)
+    userApi.readById(userId).then(function (data) {
+        res.json(data)
+    }, function (error) {
+        res.send(500, error.stack)
+    })
 })
 router.route('/api/user').get(function (req, res, next) {
-    var user = userApi.read(res)
-    res.json(user)
+    userApi.read().then(function (data) {
+        res.json(data)
+    }, function (error) {
+        res.send(500, error.stack)
+    })
 })
 router.route('/api/user').post(function (req, res, next) {
+    var newuser = req.body
     var user = new User()
-    user.name = req.user.name
-    user.username = req.user.username
-    user.password = req.user.password
-    user.role = req.user.role
-    user.email = req.user.email
-    user.createDate = Date.now
-    var successSaved = userApi.create(user, res)
-
-    res.json(successSaved)
+    user.name = newuser.name
+    user.username = newuser.username
+    user.password = newuser.password
+    user.role = newuser.role
+    user.email = newuser.email
+    user.createDate = new Date()
+    user.updateDate = new Date()
+    userApi.create(user).then(function (data) {
+        res.json(data)
+    }, function (error) {
+        res.send(500, error.stack)
+    })
 })
 router.route('/api/user').put(function (req, res, next) {
-    var updateUser = req.params.user;
-    var updateUserId = req.params.user._id;
-    updateUser.updateDate = Date.now
-    console.log("updateById  " + updateUserId)
-    var successUpdated = userApi.update(updateUserId, updateUser, res)
-    res.json(successUpdated)
+    if (req.body._id == null || req.body._id == '') {
+        res.send(500, error.stack)
+    }
+    var updateUserId = req.body._id;
+    updateUser = req.body
+    updateUser['updateDate'] = new Date()
+    console.log(updateUser)
+    userApi.update(updateUserId, updateUser).then(function (data) {
+        res.json(data)
+    }, function (error) {
+        res.send(500, error.stack)
+    })
 })
 router.route('/api/user/:id').delete(function (req, res, next) {
-    var userId = req.params.user._id
-        var username = req.params.user.username
-        console.log('starting to delete username = '+username+", id="+userId)
-        var successDeleted=userApi.delete(userId,res);
-    res.json(successDeleted)
+    var userId = req.params.id
+    console.log('starting to delete user _id = ' + userId)
+    userApi.delete(userId).then(function (data) {
+        res.json(data)
+    }, function (error) {
+        res.send(500, error.stack)
+    })
 })
 module.exports = router;

@@ -1,62 +1,70 @@
 require('../models/User');
+const Q = require('q');
 var mongoose = require('mongoose');
 var User = mongoose.model('user');
+
 module.exports = {
-    create: function (user, res) {
-        User.save(function (err, user) {
+    create: function (user) {
+        var deferred = Q.defer()
+        user.save(function (err, data) {
             if (err) {
                 console.error(err.stack)
-                return res.send(500, err.stack);
+                deferred.reject(err)
             }
-            console.log("saved a user")
-            return user;
+            deferred.resolve(data)
         })
+        return deferred.promise;
     },
-    delete: function (id, res) {
+    delete: function (id) {
         console.log('delete user with id => ' + id)
+        var deferred = Q.defer()
         User.remove({
             _id: id
-        }, function (err) {
+        }, function (err, data) {
             if (err) {
                 console.error(err.stack)
-                return res.send(500, err);
+                deferred.reject(err)
             }
-            return {
-                message: 'user with id =' + id + " deleted."
-            }
+            deferred.resolve(data)
         })
+        return deferred.promise;
     },
-    read: function (res) {
+    read: function () {
+        var deferred = Q.defer()
         User.find().sort([['createDate', 'descending']]).exec(function (err, users) {
             if (err) {
                 console.error(err.stack)
-                return res.send(500, err);
+                deferred.reject(err)
             } else {
-                return users;
+                deferred.resolve(users)
             }
         })
+        return deferred.promise;
     },
-    readById: function (id, res) {
+    readById: function (id) {
+        var deferred = Q.defer()
         User.findById(id).exec(function (err, user) {
             if (err) {
                 console.error(err.stack)
-                return res.send(500, err);
+                deferred.reject(err)
             } else {
-                return user;
+                deferred.resolve(user)
             }
         })
+        return deferred.promise;
     },
-    update: function (updateUserId, updateUser, res) {
-        User.findById(updateUserId, function (err, updateUser) {
-            User.update({
-                _id: updateUserId
-            }, updateUser, function (err) {
-                if (err) {
-                    console.error(err.stack)
-                    return res.send(500, err);
-                }
-                return updateUser
-            })
+    update: function (updateUserId, updateUser) {
+        var deferred = Q.defer()
+        User.findByIdAndUpdate(updateUserId, {
+            $set: updateUser
+        }, function (err, data) {
+            if (err) {
+                console.error(err.stack)
+                deferred.reject(err)
+            } else {
+                deferred.resolve(data)
+            }
         })
+        return deferred.promise;
     }
 }
