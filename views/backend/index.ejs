@@ -9,7 +9,7 @@
     <!-- STYLES -->
     <!--    <link rel="stylesheet" href="admin/css/main.min.css" />-->
 
-    <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/4.0.0-alpha.4/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <link rel="stylesheet" type="text/css" href="admin/css/rdash.css">
     <!-- Custom CSS -->
@@ -55,79 +55,76 @@
         </div>
         <!-- End Sidebar -->
 
-        <div id="content-wrapper">
-            <div class="page-content">
-
-                <!-- Header Bar -->
-                <div class="row header">
-                    <div class="col-xs-12">
-                        <div class="user pull-right">
-                            <div class="item dropdown">
-                                <a href="#" class="dropdown-toggle">
-                                    <img src="admin/img/avatar.jpg">
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-right">
-                                    <li class="dropdown-header">
-                                        Joe Bloggs
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li class="link">
-                                        <a href="#">
+        <!-- Header Bar -->
+        <div class="row header">
+            <div class="col-xs-12">
+                <div class="user pull-right">
+                    <div class="item dropdown" uib-dropdown>
+                        <a href="#" class="dropdown-toggle" uib-dropdown-toggle>
+                            <img src="admin/img/avatar.jpg">
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="dropdown-header">
+                                Joe Bloggs
+                            </li>
+                            <li class="divider"></li>
+                            <li class="link">
+                                <a href="#">
                       Profile
                     </a>
-                                    </li>
-                                    <li class="link">
-                                        <a href="#">
+                            </li>
+                            <li class="link">
+                                <a href="#">
                       Menu Item
                     </a>
-                                    </li>
-                                    <li class="link">
-                                        <a href="#">
+                            </li>
+                            <li class="link">
+                                <a href="#">
                       Menu Item
                     </a>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li class="link">
-                                        <a href="#">
+                            </li>
+                            <li class="divider"></li>
+                            <li class="link">
+                                <a href="#">
                       Logout
                     </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="item dropdown">
-                                <a href="#" class="dropdown-toggle">
-                                    <i class="fa fa-bell-o"></i>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-right">
-                                    <li class="dropdown-header">
-                                        Notifications
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <a href="#">Server Down!</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="meta">
-                            <div class="page">
-                                Dashboard
-                            </div>
-                            <div class="breadcrumb-links">
-                                Home / Dashboard
-                            </div>
-                        </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="item dropdown" uib-dropdown>
+                        <a href="#" class="dropdown-toggle" uib-dropdown-toggle>
+                            <i class="fa fa-bell-o"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="dropdown-header">
+                                Notifications
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">Server Down!</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                <!-- End Header Bar -->
-
-                <!-- Main Content -->
-                <div ui-view></div>
-
+                <div class="meta">
+                    <div class="page">
+                        Dashboard
+                    </div>
+                    <div class="breadcrumb-links">
+                        Home / Dashboard
+                    </div>
+                </div>
             </div>
-            <!-- End Page Content -->
         </div>
-        <!-- End Content Wrapper -->
+        <!-- End Header Bar -->
+
+        <!-- Main Content -->
+        <div ui-view></div>
+
+    </div>
+    <!-- End Page Content -->
+    </div>
+    <!-- End Content Wrapper -->
     </div>
     <!-- End Page Wrapper -->
 </body>
