@@ -3,7 +3,7 @@
  */
 
 angular
-    .module('RDash')
+    .module('red23-site')
     .controller('AlertsCtrl', ['$scope', AlertsCtrl]);
 
 function AlertsCtrl($scope) {
@@ -30,7 +30,7 @@ function AlertsCtrl($scope) {
  * Master Controller
  */
 
-angular.module('RDash')
+angular.module('red23-site')
     .controller('MasterCtrl', ['$scope', '$cookieStore', MasterCtrl]);
 
 function MasterCtrl($scope, $cookieStore) {
