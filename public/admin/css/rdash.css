@@ -297,11 +297,13 @@ ul.sidebar .sidebar-main {
   height: 65px;
 }
 ul.sidebar .sidebar-main a {
-  font-size: 18px;
+  font-size: 20px;
   line-height: 60px;
+  color: aliceblue;
 }
 ul.sidebar .sidebar-main a:hover {
   cursor: pointer;
+  color: goldenrod
 }
 ul.sidebar .sidebar-main .menu-icon {
   float: right;
