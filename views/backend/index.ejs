@@ -15,15 +15,13 @@
     <link rel="stylesheet" type="text/css" href="admin/css/rdash.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="admin/css/table.css" />
+    <link rel="stylesheet" href="admin/css/validator.css">
     <!-- SCRIPTS -->
     <!--    <script src="admin/js/main.min.js"></script>-->
     <script type="text/javascript" src="//cdn.bootcss.com/angular.js/1.5.8/angular.js"></script>
     <script type="text/javascript" src="admin/js/common/ui-bootstrap-tpls-2.2.0.js"></script>
     <script type="text/javascript" src="//cdn.bootcss.com/angular.js/1.5.8/angular-cookies.js"></script>
     <script type="text/javascript" src="admin/js/common/angular-ui-router.js"></script>
-    <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.js" type="text/javascript"></script>
-    <script src="//cdn.bootcss.com/bootstrap/4.0.0-alpha.4/js/bootstrap.js" type="text/javascript"></script>
     <!-- Custom Scripts -->
     <script type="text/javascript" src="admin/js/dashboard.js"></script>
     <script type="text/javascript" src="admin/js/controller.js"></script>
@@ -31,66 +29,7 @@
     <script type="text/javascript" src="admin/js/services/httpService.js"></script>
     <script type="text/javascript" src="admin/js/controllers/userListController.js"></script>
     <script type="text/javascript" src="admin/js/controllers/userUpdateController.js"></script>
-    
-<script>
-$(document).ready(function(){
-     $("#updateUserForm").bootstrapValidator({
-        feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-        fields: {
-            username: {
-                message: 'The username is not valid',
-                validators: {
-                    notEmpty: {
-                        message: 'The username is required and cannot be empty'
-                    },
-                    stringLength: {
-                        min: 6,
-                        max: 30,
-                        message: 'The username must be more than 6 and less than 30 characters long'
-                    }
-                }
-            },
-            name: {
-                message: 'The username is not valid',
-                validators: {
-                    notEmpty: {
-                        message: 'The name is required and cannot be empty'
-                    },
-                    stringLength: {
-                        min: 6,
-                        max: 30,
-                        message: 'The name must be more than 6 and less than 30 characters long'
-                    }
-                }
-            },
-            email: {
-                message: 'The email is not valid',
-                validators: {
-                    notEmpty: {
-                        message: 'The email is required and cannot be empty'
-                    },
-                    stringLength: {
-                        min: 6,
-                        max: 30,
-                        message: 'The email must be more than 6 and less than 30 characters long'
-                    }
-                }
-            },
-            submitButtons: 'button[type="submit"]',
-            submitHandler: function(validator, form, submitButton) {
-                // Do your task
-                // ...
-                // Submit the form
-                validator.defaultSubmit();
-            }
-        }
-    })
-}) 
-</script>
+    <!--angular-bootstrap for validating may be a proper approach-->
 </head>
 
 <body ng-controller="MasterCtrl">

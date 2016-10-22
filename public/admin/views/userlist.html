@@ -23,8 +23,8 @@
     <td>{{user.createDate |date:"MMM d, y"}}</td>
     <td>{{user.updateDate |date:"MMM d, y"}}</td>
     <td>
-        <a ui-sref="updateUser({id: user['_id'].str})">Update</a>
-        <a ui-sref="deleteUser({id: user['_id'].str})">Delete</a>
+        <a ui-sref="updateUser({id: user._id})">Update</a>
+        <a ui-sref="deleteUser({id: user._id})">Delete</a>
     </td>
   </tr>
 </table>

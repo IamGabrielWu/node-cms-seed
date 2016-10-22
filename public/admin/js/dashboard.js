@@ -4,7 +4,8 @@ angular.module("red23-site").config(["$stateProvider", "$urlRouterProvider", fun
     $urlRouterProvider.otherwise("/"), $stateProvider.state("index", {
         url: "/",
         templateUrl: "admin/views/userlist.html",
-        controller:'UserListCtrl'
+        controller:'UserListCtrl',
+        controllerAs:'userlistctrl'
     })
     .state("updateUser", {
         url: "/user/update/:id",

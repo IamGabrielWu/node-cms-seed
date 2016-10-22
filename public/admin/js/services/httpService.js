@@ -22,6 +22,7 @@ angular
 
         function queryById(path, id) {
             var defer = $q.defer()
+            console.log('query by id => '+path+id)
             $http.get(path + id)
                 .success(function (data, status, headers, config) {
                     defer.resolve({

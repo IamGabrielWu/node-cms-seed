@@ -2,6 +2,7 @@ require('../models/User');
 const Q = require('q');
 var mongoose = require('mongoose');
 var User = mongoose.model('user');
+var ObjectId = require('mongoose').Types.ObjectId; 
 
 module.exports = {
     create: function (user) {
@@ -17,7 +18,7 @@ module.exports = {
     },
     delete: function (id) {
         console.log('delete user with id => ' + id)
-        var deferred = Q.defer()
+        var deferred = Q.defer() 
         User.remove({
             _id: id
         }, function (err, data) {
@@ -43,7 +44,9 @@ module.exports = {
     },
     readById: function (id) {
         var deferred = Q.defer()
-        User.findById(id).exec(function (err, user) {
+        console.log("moogoose find by Id = > "+id)
+        var identity=new ObjectId(id)
+        User.findById(identity).exec(function (err, user) {
             if (err) {
                 console.error(err.stack)
                 deferred.reject(err)
