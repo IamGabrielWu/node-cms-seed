@@ -1,11 +1,6 @@
 <div class="table-div" ng-controller="UserListCtrl as userlist_vm">
     <h1>This is <span>User List</span></h1>
-        <script>
-        $(document).ready(function() {
-            $('#usersTable').DataTable();
-        });
-    </script>
-    <table id="usersTable" class="responstable display">
+    <table class="responstable" data-page-length='10' datatable="ng">
         <thead>
             <tr>
                 <th>No</th>
@@ -19,21 +14,21 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="user in userlist_vm.users | orderBy: 'createDate' : true track by $index">
-                <td>{{$index}}</td>
-                <td>{{user.name}}</td>
-                <td>{{user.username}}</td>
-                <td>{{user.email}}</td>
-                <td>{{user.role}}</td>
-                <td>{{user.createDate |date:"MMM d, y"}}</td>
-                <td>{{user.updateDate |date:"MMM d, y"}}</td>
+            <tr ng-repeat="user in userlist_vm.users" on-repeat-over>
+                <td ng-bind="$index+1"></td>
+                <td ng-bind="user.name"></td>
+                <td ng-bind="user.username"></td>
+                <td ng-bind="user.email"></td>
+                <td ng-bind="user.role"></td>
+                <td ng-bind="user.createDate |date:'MMM d, y'"></td>
+                <td ng-bind="user.updateDate |date:'MMM d, y'"></td>
                 <td>
                     <a ui-sref="updateUser({id: user._id})">Update</a>
                     <a ui-sref="deleteUser({id: user._id})">Delete</a>
                 </td>
             </tr>
         </tbody>
-        <tfooter>
+        <tfoot>
             <tr>
                 <th>No</th>
                 <th>Name</th>
@@ -44,6 +39,6 @@
                 <th>UpdateDate</th>
                 <th>Operation</th>
             </tr>
-        </tfooter>
+        </tfoot>
     </table>
 </div>
