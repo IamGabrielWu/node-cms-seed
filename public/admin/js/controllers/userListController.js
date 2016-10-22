@@ -13,4 +13,8 @@ function UserListCtrl(httpService) {
     }, function (error) {
         console.error(error.stack)
     })
+    
+    $(document).ready(function(){
+            $('#usersTable').DataTable();
+    });
 }

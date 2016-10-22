@@ -1,4 +1,4 @@
-angular.module("red23-site", ["ui.bootstrap", "ui.router", "ngCookies"]);
+angular.module("red23-site", ["ui.bootstrap","ui.router", "ngCookies"]);
 "use strict";
 angular.module("red23-site").config(["$stateProvider", "$urlRouterProvider", function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/"), $stateProvider.state("index", {
