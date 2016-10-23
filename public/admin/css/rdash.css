@@ -332,9 +332,11 @@ ul.sidebar .sidebar-list a:hover {
   color: #fff;
   border-left: 3px solid #e99d1a;
   text-indent: 22px;
+  color: goldenrod
 }
 ul.sidebar .sidebar-list a:hover .menu-icon {
   text-indent: 25px;
+  color: goldenrod
 }
 ul.sidebar .sidebar-list .menu-icon {
   float: right;
