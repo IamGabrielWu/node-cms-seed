@@ -6,7 +6,7 @@ angular
     .module('red23-site')
     .controller('UserNewCtrl', ['httpService', '$location',UserNewCtrl]);
 
-const createUser = '/api/user/'
+var createUser = '/api/user/'
 
 function UserNewCtrl(httpService,$location) {
     var vm = this

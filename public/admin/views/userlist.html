@@ -1,8 +1,15 @@
 <div ng-controller="UserListCtrl as userlist_vm">
-   <br>
-   <br>
+    <br>
+    <br>
+    <script type="text/ng-template" id="alert.html">
+        <div ng-transclude></div>
+    </script>
+    <div ng-show="userlist_vm.alerts.length>0">
+        <div uib-alert ng-repeat="alert in userlist_vm.alerts" ng-class="'alert-' + (alert.type || 'warning')" close="userlist_vm.closeAlert($index)">{{alert.msg}}</div>
+    </div>
     <button><a ui-sref="newUser"><h4>New User</h4></a></button>
-    <span></span><h1 class="text-center">This is User List</h1>
+    <span></span>
+    <h1 class="text-center">This is User List</h1>
     <table class="responstable" data-page-length='10' datatable="ng">
         <thead>
             <tr>
@@ -27,7 +34,7 @@
                 <td ng-bind="user.updateDate |date:'MMM d, y'"></td>
                 <td>
                     <a ui-sref="updateUser({id: user._id})">Update</a>
-                    <a ui-sref="deleteUser({id: user._id})">Delete</a>
+                    <a ng-click="userlist_vm.openDeleteModal(user._id)">Delete</a>
                 </td>
             </tr>
         </tbody>

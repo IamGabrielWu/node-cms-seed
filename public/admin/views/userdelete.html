@@ -1,0 +1,25 @@
+<div>
+    <div class="modal-header">
+        <h3 class="modal-title">Confirm to Delete the user ?</h3>
+    </div>
+    <div class="modal-body">
+        <form name="deleteUserForm">
+            <div class="row form-group">
+                <label for="userId" class="col-md-4 col-sm-4 col-xs-12">userid</label>
+                <div class="col-md-8 col-sm-8 col-xs-12">
+                    <input type="text" name="userId" id="userId" ng-model="$resolve.user._id" class="col-md-12 col-sm-12 col-xs-12" readonly>
+                </div>
+            </div>
+            <div class="row form-group">
+                <label for="userName" class="col-md-4 col-sm-4 col-xs-12">username</label>
+                <div class="col-md-8 col-sm-8 col-xs-12">
+                    <input type="text" name="username" id="username" ng-model="$resolve.user.username" class="col-md-12 col-sm-12 col-xs-12" readonly>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="vm_userdelete.ok($resolve.user._id)">OK</button>
+        <button class="btn btn-warning" ng-click="vm_userdelete.cancel()">Cancel</button>
+    </div>
+</div>

@@ -87,8 +87,8 @@ angular
             var defer = $q.defer()
             $http.delete(path + id)
                 .success(function (data, status, headers, config) {
-                    defer.reject({
-                        'response': response,
+                    defer.resolve({
+                        'data': data,
                         'status': status
                     });
                 })
@@ -101,12 +101,11 @@ angular
             return defer.promise
         }
 
-        var d={
+        return {
             query: query,
             queryById: queryById,
             update: update,
             save: save,
             deleteById: deleteById
         }
-        return d
     }])
