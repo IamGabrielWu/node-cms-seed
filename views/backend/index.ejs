@@ -36,6 +36,7 @@
     <script type="text/javascript" src="admin/js/controllers/userUpdateController.js"></script>
     <script type="text/javascript" src="admin/js/controllers/userNewController.js"></script>
     <script type="text/javascript" src="admin/js/controllers/userDeleteController.js"></script>
+    <script type="text/javascript" src="admin/js/controllers/userViewController.js"></script>
     <!--angular-bootstrap for validating may be a proper approach-->
 </head>
 
@@ -82,7 +83,7 @@
                             </li>
                             <li class="divider"></li>
                             <li class="link">
-                                <a href="#">
+                                <a ui-sref="viewUser({id: 'temp'})">
                       Profile
                     </a>
                             </li>
@@ -111,8 +112,8 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-right">
                             <li class="dropdown-header">
-                               <a href="#"><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;&nbsp;&nbsp;Alert Notifications&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="alerts.length>0" class="badge" style="background-color:red">{{alerts.length}}</span></a>
-                               
+                                <a href="#"><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;&nbsp;&nbsp;Alert Notifications&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="alerts.length>0" class="badge" style="background-color:red">{{alerts.length}}</span></a>
+
                             </li>
                         </ul>
                     </div>

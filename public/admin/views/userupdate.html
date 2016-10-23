@@ -32,6 +32,14 @@
             <span ng-show="updateUserForm.email.$touched && updateUserForm.email.$invalid" style="color:red">The email is not valid.</span>
         </div>
         <div class="form-group">
+            <label class="control-label col-md-1 col-sm-1 col-xs-12" for="role">role <span class="required">*</span>
+            </label>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <input type="role" id="role" name="role" class="form-control ng-invalid ng-valid ng-untouched" ng-model="updateuser_vm.user.role" placeholder="role" required>
+            </div>
+            <span ng-show="updateUserForm.role.$touched && updateUserForm.role.$invalid" style="color:red">The role is not valid.</span>
+        </div>
+        <div class="form-group">
             <label class="control-label col-md-1 col-sm-1 col-xs-12" for="createDate">createDate</label>
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <input type="text" id="createDate" name="createDate" ng-model="updateuser_vm.user.createDate" class="form-control" readonly="readonly" placeholder="createDate">
@@ -48,7 +56,7 @@
         <div class="form-group">
             <div class="col-md-11 col-sm-11 col-xs-12 col-md-offset-1">
                 <button ng-click="updateuser_vm.reset()" class="btn btn-primary">Reset</button>
-                <button class="btn btn-success" ng-show="updateUserForm.name.$valid&&updateUserForm.username.$valid&&updateUserForm.email.$valid" ng-click="updateuser_vm.submit()" >Submit</button>
+                <button class="btn btn-success" ng-show="updateUserForm.name.$valid&&updateUserForm.username.$valid&&updateUserForm.email.$valid&&updateUserForm.role.$invalid" ng-click="updateuser_vm.submit()" >Submit</button>
             </div>
         </div>
     </form>

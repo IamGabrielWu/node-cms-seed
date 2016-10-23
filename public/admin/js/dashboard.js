@@ -1,12 +1,7 @@
 angular.module("red23-site", ["ui.bootstrap", "ui.router", "ngCookies", "datatables"]);
-angular.module("red23-site").run(function ($rootScope) {
+angular.module("red23-site").run(function ($rootScope,$cookieStore) {
     //initialize alerts
     $rootScope.alerts = [];
-    var alert = {
-        type: 'danger',
-        msg: 'this is testing'
-    }
-    $rootScope.alerts.push(alert)
     $rootScope.closeAlert = function (index) {
         $rootScope.alerts.splice(index, 1);
     };
@@ -27,6 +22,11 @@ angular.module("red23-site").config(["$stateProvider", "$urlRouterProvider", fun
             url: "/user/new",
             templateUrl: "admin/views/usernew.html",
             controller: 'UserNewCtrl'
+        })
+        .state("viewUser", {
+            url: "/user/view/:id",
+            templateUrl: "admin/views/userdetails.html",
+            controller: 'UserViewCtrl'
         })
         .state("tables", {
             url: "/tables",
