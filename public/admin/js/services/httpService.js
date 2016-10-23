@@ -101,11 +101,12 @@ angular
             return defer.promise
         }
 
-        return {
+        var d={
             query: query,
             queryById: queryById,
             update: update,
             save: save,
             deleteById: deleteById
         }
+        return d
     }])

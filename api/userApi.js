@@ -56,6 +56,21 @@ module.exports = {
         })
         return deferred.promise;
     },
+    readByUsername: function (username) {
+        var deferred = Q.defer()
+        var field={
+            username:username
+        }
+        User.find(field).exec(function (err, user) {
+            if (err) {
+                console.error(err.stack)
+                deferred.reject(err)
+            } else {
+                deferred.resolve(user)
+            }
+        })
+        return deferred.promise;
+    },
     update: function (updateUserId, updateUser) {
         var deferred = Q.defer()
         User.findByIdAndUpdate(updateUserId, {

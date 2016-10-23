@@ -19,6 +19,18 @@ router.route('/api/user/:id').get(function (req, res, next) {
         res.send(500, error.stack)
     })
 })
+router.route('/api/user/name/:username').get(function (req, res, next) {
+    var username = req.params.username;
+    userApi.readByUsername(username).then(function (data) {
+        if(data instanceof Array && data.length==0){
+            res.json({message:'this username is not occupied',data:data,status:true})
+        }else{
+            res.json({message:'this username is occupied',data:data,status:false})
+        }
+    }, function (error) {
+        res.send(500, error.stack)
+    })
+})
 router.route('/api/user').get(function (req, res, next) {
     userApi.read().then(function (data) {
         res.json(data)
