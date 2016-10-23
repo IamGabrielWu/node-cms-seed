@@ -107,14 +107,12 @@
                     <div class="item dropdown" uib-dropdown>
                         <a href="#" class="dropdown-toggle" uib-dropdown-toggle>
                             <i class="fa fa-bell-o"></i>
+                            <span ng-show="alerts.length>0" class="badge" style="background-color:red">{{alerts.length}}</span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-right">
                             <li class="dropdown-header">
-                                Notifications
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="#">Server Down!</a>
+                               <a href="#"><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;&nbsp;&nbsp;Alert Notifications&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="alerts.length>0" class="badge" style="background-color:red">{{alerts.length}}</span></a>
+                               
                             </li>
                         </ul>
                     </div>
@@ -131,6 +129,11 @@
         </div>
         <!-- End Header Bar -->
 
+        <div class="row alerts-container">
+            <div uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert($index)" ng-show="alerts.length>0">
+                {{alert.msg}}
+            </div>
+        </div>
         <!-- Main Content -->
         <div ui-view></div>
 

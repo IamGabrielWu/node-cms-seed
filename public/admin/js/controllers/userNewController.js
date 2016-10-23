@@ -4,11 +4,11 @@
 
 angular
     .module('red23-site')
-    .controller('UserNewCtrl', ['httpService', '$location',UserNewCtrl]);
+    .controller('UserNewCtrl', ['httpService', '$location', '$rootScope', UserNewCtrl]);
 
 var createUser = '/api/user/'
 
-function UserNewCtrl(httpService,$location) {
+function UserNewCtrl(httpService, $location, $rootScope) {
     var vm = this
     var resetUser = {};
 
@@ -21,6 +21,11 @@ function UserNewCtrl(httpService,$location) {
                 $location.path('/')
             } else {
                 console.error(err.stack)
+                var alert = {
+                    type: 'danger',
+                    msg: 'error when creating user'
+                }
+                $rootScope.alerts.push(alert)
             }
         })
     }

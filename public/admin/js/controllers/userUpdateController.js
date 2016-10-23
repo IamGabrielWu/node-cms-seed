@@ -1,10 +1,10 @@
 angular
     .module('red23-site')
-    .controller('UserUpdateCtrl', ['httpService', '$stateParams', '$location', UserUpdateCtrl]);
+    .controller('UserUpdateCtrl', ['httpService', '$stateParams', '$location', '$rootScope',UserUpdateCtrl]);
 var findbyId = '/api/user/'
 var updateById = '/api/user/'
 
-function UserUpdateCtrl(httpService, $stateParams, $location) {
+function UserUpdateCtrl(httpService, $stateParams, $location, $rootScope) {
     var vm = this
     var resetUser;
     console.log("find user with id = " + $stateParams.id)
@@ -14,6 +14,11 @@ function UserUpdateCtrl(httpService, $stateParams, $location) {
         vm.resetUser = angular.copy(res['data'])
     }, function (error) {
         console.error(error.stack)
+        var alert = {
+            type: 'danger',
+            msg: 'error occurred when query user by id!'
+        }
+        $rootScope.alerts.push(alert)
     })
 
     this.submit = function () {
@@ -25,6 +30,11 @@ function UserUpdateCtrl(httpService, $stateParams, $location) {
                 $location.path('/')
             } else {
                 console.error(err.stack)
+                var alert = {
+                    type: 'danger',
+                    msg: 'error occurred when updating user!'
+                }
+                $rootScope.alerts.push(alert)
             }
         })
     }

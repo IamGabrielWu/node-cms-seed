@@ -1,26 +1,27 @@
 angular
     .module('red23-site')
-    .controller('UserDeleteCtrl', ['httpService', '$uibModalInstance','$state',UserDeleteCtrl]);
-var deleteById='/api/user/'
+    .controller('UserDeleteCtrl', ['httpService', '$uibModalInstance', '$state', '$rootScope', UserDeleteCtrl]);
+var deleteById = '/api/user/'
 var alerts = []
-function UserDeleteCtrl(httpService,$uibModalInstance,$state){
+
+function UserDeleteCtrl(httpService, $uibModalInstance, $state, $rootScope) {
     this.ok = function (id) {
-        console.log("deleting user id=> "+id)
-        httpService.deleteById(deleteById,id).then(function(res){
+        console.log("deleting user id=> " + id)
+        httpService.deleteById(deleteById, id).then(function (res) {
             console.log(JSON.stringify(res))
             $state.reload()
-        },function(error){
+        }, function (error) {
             console.error(error.stack)
-            var alert={
+            var alert = {
                 type: 'danger',
                 msg: 'Oh snap! error occurred when deleting user!'
             }
-            alerts.push(alert)
+            $rootScope.alerts.push(alert)
         })
-		$uibModalInstance.close();
-	};
+        $uibModalInstance.close();
+    };
 
-	this.cancel = function () {
-		$uibModalInstance.dismiss('cancel');
-	};
+    this.cancel = function () {
+        $uibModalInstance.dismiss('cancel');
+    };
 }
