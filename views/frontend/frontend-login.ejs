@@ -1,0 +1,26 @@
+<div class="login_bg" ng-controller="frontendLoginCtrl as loginCtrl">
+    <div class="login-page">
+        <h4>
+                <span ng-model="loginCtrl.loginError.error_stack" style="color: red">{{loginCtrl.loginError.error_stack}}</span>
+            </h4>
+        <div class="form">
+            <form class="login-form" id="loginForm" ng-submit="loginCtrl.login()">
+                <input type="text" name="username" ng-model="loginCtrl.credential.username" placeholder="username" />
+                <input type="password" name="password" ng-model="loginCtrl.credential.password" placeholder="password" />
+                <button type="submit">login</button>
+            </form>
+        </div>
+    </div>
+    <footer class="footer-basic-centered">
+        <p class="footer-company-motto">The company motto.</p>
+        <p class="footer-links">
+            <a href="#">Home</a> ·
+            <a href="#">Blog</a> ·
+            <a href="#">Pricing</a> ·
+            <a href="#">About</a> ·
+            <a href="#">Faq</a> ·
+            <a href="#">Contact</a>
+        </p>
+        <p class="footer-company-name">Company Name © 2015</p>
+    </footer>
+</div>

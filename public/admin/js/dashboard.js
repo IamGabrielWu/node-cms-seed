@@ -6,6 +6,13 @@ angular.module("red23-site").run(function ($rootScope,$cookieStore) {
         $rootScope.alerts.splice(index, 1);
     };
 })
+angular.module("red23-site").constant('USER_API',{
+    auth_login:'/login',
+    findbyUsername:'/api/user/name/'
+})
+angular.module("red23-site").constant('REGEX',{
+    notBlank:/^\s*$/
+})
 angular.module("red23-site").config(["$stateProvider", "$urlRouterProvider", function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/"), $stateProvider.state("index", {
             url: "/",

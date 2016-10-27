@@ -11,7 +11,6 @@ var express = require('express'),
     //authentication
     passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy,
-    flash = require('connect-flash'),
     //mongoose to mongo database
 
     morgan = require('morgan'),
@@ -57,7 +56,6 @@ app.use(express_session({
         maxAge: 2628000000
     }
 }));
-app.use(flash());
 var env = process.env.NODE_ENV || 'development';
 
 
@@ -71,10 +69,6 @@ if (env === 'production') {
 
 //***end configuration
 
-//***authenticate
-require('./authenticate')
-    //***end authenticate
-
 //***filter
 var filter = require('./filter')
     //***end filter
@@ -86,13 +80,7 @@ app.use(user_routes)
 //*** front pages routing
 app.use('/', filter.frontend_authorize);
 app.get('/login', frontend_login.index);
-app.post('/login',
-    passport.authenticate('local', {
-        successRedirect: '/',
-        failureRedirect: '/login',
-        failureFlash: true
-    })
-);
+app.post('/login',frontend_login.auth);
 app.get('/', frontend_main.index)
     //*** end front pages routing
 

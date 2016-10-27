@@ -1,6 +1,4 @@
-const findbyUsername = '/api/user/name/'
-const notBlank = /^\s*$/;
-function checkUsername(httpService) {
+function checkUsername(httpService,USER_API,REGEX) {
     var d = {
         require: 'ngModel',
         restrict: 'EA',
@@ -8,11 +6,11 @@ function checkUsername(httpService) {
             console.log("starting to validate username...")
             function myValidation(value) {
                 console.log("validating username value = > "+value)
-                if((!value)||notBlank.test(value)){
+                if((!value)||REGEX.notBlank.test(value)){
                     console.log("username value is blank")
                     return;
                 }
-                httpService.queryById(findbyUsername, value).then(function (res) {
+                httpService.queryById(USER_API.findbyUsername, value).then(function (res) {
                     console.log('validating username result=> ' + JSON.stringify(res))
                     var username_status = res['data'];
                     console.log('username status => ' + JSON.stringify(username_status))
@@ -32,4 +30,4 @@ function checkUsername(httpService) {
     }
     return d;
 }
-angular.module("red23-site").directive("usernamecheck", ['httpService', checkUsername]);
+angular.module("red23-site").directive("usernamecheck", ['httpService','USER_API','REGEX' checkUsername]);

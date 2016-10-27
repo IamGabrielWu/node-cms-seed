@@ -1,7 +1,6 @@
     //authentication
     var passport = require('passport'),
         LocalStrategy = require('passport-local').Strategy,
-        flash = require('connect-flash'),
         User = require('./models/User');
     // define strategy
     passport.use(new LocalStrategy({
@@ -14,14 +13,10 @@
             }, function (err, user) {
                 if (err) {
                     console.error(err)
-                    return done(null, false, {
-                        message: 'Database Error'
-                    });
+                    return done(null, false, null);
                 }
                 if (!user) {
-                    return done(null, false, {
-                        message: 'User is not permitted'
-                    });
+                    return done(null, false, null);
                 }
                 // console.log("user found in database => "+JSON.stringify(user))
                 if (user.username == username && user.password == password) {
@@ -29,12 +24,10 @@
                     req.session.username = user.username;
                     req.session.role=user.role;
                     req.session.user = user;
-                    return done(null, username);
+                    return done(null, user);
                 } else {
                     console.log(username + ' login failure')
-                    return done(null, false, {
-                        message: 'Incorrect username or password'
-                    });
+                    return done(null, false,null);
                 }
             })
         }
