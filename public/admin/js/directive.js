@@ -30,4 +30,4 @@ function checkUsername(httpService,USER_API,REGEX) {
     }
     return d;
 }
-angular.module("red23-site").directive("usernamecheck", ['httpService','USER_API','REGEX' checkUsername]);
+angular.module("red23-site").directive("usernamecheck", ['httpService','USER_API','REGEX', checkUsername]);

@@ -1,7 +1,7 @@
 angular.module('red23-site')
-    .controller('frontendLoginCtrl', ['$cookieStore', 'httpService', 'USER_API', '$location', frontendLoginCtrl]);
+    .controller('backendLoginCtrl', ['$cookieStore', 'httpService', 'USER_API', '$location', backendLoginCtrl]);
 
-function frontendLoginCtrl($cookieStore, httpService, USER_API, $location) {
+function backendLoginCtrl($cookieStore, httpService, USER_API, $location) {
     var vm=this
     this.credential = {}
     this.loginError = null
@@ -13,9 +13,18 @@ function frontendLoginCtrl($cookieStore, httpService, USER_API, $location) {
         console.log("login user => " + JSON.stringify(user))
         httpService.save(USER_API.auth_login, user).then(function (res) {
             vm.loginError=null
-            console.log(JSON.stringify(res))           
-            $cookieStore.put('currentUser', user)
-            $location.path('/frontendmain')
+            console.log(JSON.stringify(res)) 
+            if(res['data']['data'].role=='admin'){
+                $cookieStore.put('currentUser', user)
+                $location.path('/cms/backendmain')
+            }else{
+                $cookieStore.remove('currentUser')
+                vm.loginError = {
+                    status: 401,
+                    error_desc: 'the user is not admin',
+                    error_stack: 'this user is not admin'
+                }
+            }
         }, function (error) {
             console.error(error)
             $cookieStore.remove('currentUser')

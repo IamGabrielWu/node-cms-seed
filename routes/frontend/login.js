@@ -1,7 +1,8 @@
 User = require('../../models/User');
 //***front routing
 exports.index = function (req, res) {
-    res.render('frontend/frontend-login');
+    console.log('loading common html')
+    res.render('common');
 };
 var notBlank = /^\s*$/
 exports.auth = function (req, res) {

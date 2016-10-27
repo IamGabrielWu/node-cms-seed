@@ -3,7 +3,7 @@
  */
 
 exports.index = function(req, res) {
-    res.render('frontend/index');
+    res.render('common');
 };
 
 exports.partials = function(req, res) {

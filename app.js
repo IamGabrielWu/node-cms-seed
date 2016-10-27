@@ -8,9 +8,6 @@ var express = require('express'),
     errorHandler = require('errorhandler'),
     express_session = require('express-session'),
     cookie_parser = require('cookie-parser'),
-    //authentication
-    passport = require('passport'),
-    LocalStrategy = require('passport-local').Strategy,
     //mongoose to mongo database
 
     morgan = require('morgan'),
@@ -47,8 +44,6 @@ app.use(morgan('dev'));
 app.use(bodyParser());
 app.use(methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(passport.initialize());
-app.use(passport.session());
 app.use(cookie_parser())
 app.use(express_session({
     secret: 'a4f8071f-c873-4447-8ee2',
@@ -74,32 +69,27 @@ var filter = require('./filter')
     //***end filter
 
 //***api routing
-app.use(user_routes)
+//app.use(user_routes)
 //***end api routing
 
 //*** front pages routing
-app.use('/', filter.frontend_authorize);
-app.get('/login', frontend_login.index);
+//app.use('/', filter.frontend_authorize);
+app.get('/',frontend_main.index)
+//app.get('/#/login', frontend_login.index);
 app.post('/login',frontend_login.auth);
-app.get('/', frontend_main.index)
+//app.get('/', frontend_main.index)
     //*** end front pages routing
 
 
 //***backend pages routing
-const adminUrl = 'cms' //TODO will need to set it here to change views and url within views
+//const adminUrl = 'cms' //TODO will need to set it here to change views and url within views
     // serve index and view partials
     //***filter
-app.use('/' + adminUrl, filter.backend_authorize);
+//app.use('/' + adminUrl, filter.backend_authorize);
 //***end filter
-app.get('/' + adminUrl + '/login', backend_login.index);
-app.post('/' + adminUrl + '/login',
-    passport.authenticate('local', {
-        successRedirect: '/' + adminUrl,
-        failureRedirect: '/' + adminUrl + '/login',
-        failureFlash: true
-    })
-);
-app.get('/' + adminUrl, backend_main.index);
+//app.get('/' + adminUrl + '/login', backend_login.index);
+//app.post('/' + adminUrl + '/login',backend_login.auth);
+//app.get('/' + adminUrl, backend_main.index);
 // redirect all others to the index (HTML5 history)
 // app.get('*', login.redirect);
 app.use(function (req, res, next) {

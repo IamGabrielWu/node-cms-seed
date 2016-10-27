@@ -1,12 +1,12 @@
-<div class="login_bg" ng-controller="frontendLoginCtrl as loginCtrl">
+<div class="login_bg" ng-controller="backendLoginCtrl as backendLoginCtrl">
     <div class="login-page">
         <h4>
-                <span ng-model="loginCtrl.loginError.error_stack" style="color: red">{{loginCtrl.loginError.error_stack}}</span>
+                <span ng-model="backendLoginCtrl.loginError.error_stack" style="color: red">{{backendLoginCtrl.loginError.error_stack}}</span>
             </h4>
         <div class="form">
-            <form class="login-form" id="loginForm" ng-submit="loginCtrl.login()">
-                <input type="text" name="username" ng-model="loginCtrl.credential.username" placeholder="username" />
-                <input type="password" name="password" ng-model="loginCtrl.credential.password" placeholder="password" />
+            <form class="login-form" id="loginForm" ng-submit="backendLoginCtrl.login()">
+                <input type="text" name="username" ng-model="backendLoginCtrl.credential.username" placeholder="username" />
+                <input type="password" name="password" ng-model="backendLoginCtrl.credential.password" placeholder="password" />
                 <button type="submit">login</button>
             </form>
         </div>
