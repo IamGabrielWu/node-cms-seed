@@ -75,7 +75,7 @@
     -moz-background-size: 100% 100%;
     background-size: 100% 100%;
     background-repeat: no-repeat;
-    margin: auto
+    margin: auto;
 }
 .form {
     position: relative;
@@ -173,4 +173,5 @@ body {
     font-family: "Roboto", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    padding: 0 
 }
