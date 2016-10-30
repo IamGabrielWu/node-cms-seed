@@ -1,7 +1,7 @@
 angular.module('red23-site')
-    .controller('backendLoginCtrl', ['$cookieStore', 'httpService', 'USER_API', '$location', backendLoginCtrl]);
+    .controller('backendLoginCtrl', ['$cookieStore', 'httpService', 'USER_API', '$state', backendLoginCtrl]);
 
-function backendLoginCtrl($cookieStore, httpService, USER_API, $location) {
+function backendLoginCtrl($cookieStore, httpService, USER_API, $state) {
     var vm=this
     this.credential = {}
     this.loginError = null
@@ -16,7 +16,7 @@ function backendLoginCtrl($cookieStore, httpService, USER_API, $location) {
             console.log(JSON.stringify(res)) 
             if(res['data']['data'].role=='admin'){
                 $cookieStore.put('currentUser', user)
-                $location.path('/cms/backendmain')
+                $state.go('backendmain.listUser')
             }else{
                 $cookieStore.remove('currentUser')
                 vm.loginError = {

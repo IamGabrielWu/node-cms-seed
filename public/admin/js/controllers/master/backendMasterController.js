@@ -3,12 +3,18 @@
  */
 
 angular.module('red23-site')
-    .controller('MasterCtrl', ['$scope', '$cookieStore', MasterCtrl]);
+    .controller('MasterCtrl', ['$scope', '$cookieStore','$state', MasterCtrl]);
 
-function MasterCtrl($scope, $cookieStore) {
+function MasterCtrl($scope, $cookieStore,$state) {
     /**
      * Sidebar Toggle & Cookie Control
      */
+    var currentUser = $cookieStore.get('currentUser')
+    console.log(currentUser)
+    if(currentUser==null){
+        $state.go('loginUI')
+    }
+    
     var mobileView = 992;
 
     $scope.getWidth = function() {
