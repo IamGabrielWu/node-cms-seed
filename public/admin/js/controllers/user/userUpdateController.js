@@ -1,10 +1,10 @@
 angular
     .module('red23-site')
-    .controller('UserUpdateCtrl', ['httpService', '$stateParams', '$location', '$rootScope',UserUpdateCtrl]);
+    .controller('UserUpdateCtrl', ['httpService', '$stateParams', '$state', '$rootScope',UserUpdateCtrl]);
 var findbyId = '/api/user/'
 var updateById = '/api/user/'
 
-function UserUpdateCtrl(httpService, $stateParams, $location, $rootScope) {
+function UserUpdateCtrl(httpService, $stateParams, $state, $rootScope) {
     var vm = this
     var resetUser;
     console.log("find user with id = " + $stateParams.id)
@@ -27,7 +27,7 @@ function UserUpdateCtrl(httpService, $stateParams, $location, $rootScope) {
             console.log(result)
             if (result.status == 200) {
                 console.log('user is updated => ' + JSON.stringify(result))
-                $location.path('/')
+                $state.go("backendmain.listUser")
             } else {
                 console.error(err.stack)
                 var alert = {

@@ -4,11 +4,11 @@
 
 angular
     .module('red23-site')
-    .controller('UserNewCtrl', ['httpService', '$location', '$rootScope', UserNewCtrl]);
+    .controller('UserNewCtrl', ['httpService', '$state', '$rootScope', UserNewCtrl]);
 
 var createUser = '/api/user/'
 
-function UserNewCtrl(httpService, $location, $rootScope) {
+function UserNewCtrl(httpService, $state, $rootScope) {
     var vm = this
     var resetUser = {};
 
@@ -18,7 +18,7 @@ function UserNewCtrl(httpService, $location, $rootScope) {
             console.log(result)
             if (result.status == 200) {
                 console.log('user is created => ' + JSON.stringify(result))
-                $location.path('/')
+                $state.go("backendmain.listUser")
             } else {
                 console.error(err.stack)
                 var alert = {
