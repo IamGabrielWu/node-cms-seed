@@ -1,7 +1,7 @@
 <div ng-controller="UserListCtrl as userlist_vm">
     <br>
     <br>
-    <button><a ui-sref="newUser"><h4>New User</h4></a></button>
+    <a ui-sref="backendmain.newUser"><h4>New User</h4></a>
     <h1 class="text-center">This is User List</h1>
     <table class="responstable" data-page-length='10' datatable="ng">
         <thead>
@@ -26,9 +26,9 @@
                 <td ng-bind="user.createDate |date:'MMM d, y'"></td>
                 <td ng-bind="user.updateDate |date:'MMM d, y'"></td>
                 <td>
-                    <a ui-sref="updateUser({id: user._id})">Update</a>
+                    <a ui-sref="backendmain.updateUser({id: user._id})">Update</a>
                     <a ng-click="userlist_vm.openDeleteModal(user._id)">Delete</a>
-                    <a ui-sref="viewUser({id: user._id})">View</a>
+                    <a ui-sref="backendmain.viewUser({id: user._id})">View</a>
                 </td>
             </tr>
         </tbody>

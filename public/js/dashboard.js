@@ -15,18 +15,19 @@ angular.module("red23-site").constant('REGEX', {
     backendUrl:/^cms\/.*/
 })
 angular.module("red23-site").config(["$stateProvider", "$urlRouterProvider", function ($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise("/login"),
-        $stateProvider.state("frontendmain", {
-            url: "/frontendmain",
-            templateUrl: "views/frontendmain.html",
-            controller: 'frontendMainCtrl'
-        })  
+    $urlRouterProvider.otherwise("login"),
+        $stateProvider
         .state("login", {
             url: "/login",
             templateUrl: "views/frontendlogin.html",
             controller: 'frontendLoginCtrl'
         })
-        .state("backendmain_login", {
+        .state("frontendmain", {
+            url: "/frontendmain",
+            templateUrl: "views/frontendmain.html",
+            controller: 'frontendMainCtrl'
+        })  
+        .state("loginUI", {
             url: "/cms/login",
             templateUrl: "admin/views/login/login.html",
             controller: 'frontendLoginCtrl'
@@ -36,24 +37,23 @@ angular.module("red23-site").config(["$stateProvider", "$urlRouterProvider", fun
             templateUrl: "admin/views/master/master.html",
             controller: 'MasterCtrl'
         })
-        .state("listUser", {
-            url: "/cms/user",
+        .state("backendmain.listUser", {
+            url: "/user",
             templateUrl: "admin/views/userlist.html",
             controller: 'UserListCtrl',
-            controllerAs: 'userlistctrl'
         })
-        .state("updateUser", {
-            url: "/cms/user/update/:id",
+        .state("backendmain.updateUser", {
+            url: "/user/update/:id",
             templateUrl: "admin/views/userupdate.html",
             controller: 'UserUpdateCtrl'
         })
-        .state("newUser", {
-            url: "/cms/user/new",
+        .state("backendmain.newUser", {
+            url: "/user/new",
             templateUrl: "admin/views/usernew.html",
             controller: 'UserNewCtrl'
         })
-        .state("viewUser", {
-            url: "/cms/user/view/:id",
+        .state("backendmain.viewUser", {
+            url: "/user/view/:id",
             templateUrl: "admin/views/userdetails.html",
             controller: 'UserViewCtrl'
         })

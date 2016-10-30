@@ -69,7 +69,7 @@ var filter = require('./filter')
     //***end filter
 
 //***api routing
-//app.use(user_routes)
+app.use(user_routes)
 //***end api routing
 
 //*** front pages routing
