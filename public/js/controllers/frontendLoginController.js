@@ -1,7 +1,7 @@
 angular.module('red23-site')
-    .controller('frontendLoginCtrl', ['$cookieStore', 'httpService', 'USER_API', '$location', frontendLoginCtrl]);
+    .controller('frontendLoginCtrl', ['$cookieStore', 'httpService', 'USER_API', '$state', frontendLoginCtrl]);
 
-function frontendLoginCtrl($cookieStore, httpService, USER_API, $location) {
+function frontendLoginCtrl($cookieStore, httpService, USER_API, $state) {
     var vm=this
     this.credential = {}
     this.loginError = null
@@ -15,7 +15,7 @@ function frontendLoginCtrl($cookieStore, httpService, USER_API, $location) {
             vm.loginError=null
             console.log(JSON.stringify(res))           
             $cookieStore.put('currentUser', user)
-            $location.path('/frontendmain')
+            $state.go('frontendmain')
         }, function (error) {
             console.error(error)
             $cookieStore.remove('currentUser')

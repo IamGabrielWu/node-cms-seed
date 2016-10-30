@@ -15,10 +15,10 @@ function backendLoginCtrl($cookieStore, httpService, USER_API, $state) {
             vm.loginError=null
             console.log(JSON.stringify(res)) 
             if(res['data']['data'].role=='admin'){
-                $cookieStore.put('currentUser', user)
+                $cookieStore.put('currentAdminUser', user)
                 $state.go('backendmain.listUser')
             }else{
-                $cookieStore.remove('currentUser')
+                $cookieStore.remove('currentAdminUser')
                 vm.loginError = {
                     status: 401,
                     error_desc: 'the user is not admin',
@@ -27,7 +27,7 @@ function backendLoginCtrl($cookieStore, httpService, USER_API, $state) {
             }
         }, function (error) {
             console.error(error)
-            $cookieStore.remove('currentUser')
+            $cookieStore.remove('currentAdminUser')
             vm.loginError = {
                 status: 401,
                 error_desc: 'failure to login',
