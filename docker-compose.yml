@@ -1,0 +1,10 @@
+app:
+    image: gabrielwu/node-cms-seed:latest
+    ports:
+      - "3000:3000"
+    links:
+      - mongodb
+mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
